@@ -176,26 +176,23 @@ for (let i = 0; i < 100; i++) {
 // - Відтворити роботу годинника, відрахувавши 2 хвилини (2 цикли! 1й - хвилини, 2й - секунди)
 // - Відтворити роботу годинника, відрахувавши  2 години  (3 цикли! 1й - години, 2й - хвилини, 3й - секунди)
 
-const time = 59;
-let second = 0;
-let minute = 0;
-let hours = 0;
 
-for (let i = 0; i <=23 && hours !== 3 && minute !== 21; i++) {
-    console.log('hours: ', hours++);
-
-    for (let i = 0; i <= time && hours !== 3 && minute !== 21; i++) {
-        console.log('minute: ', minute++);
-
-        for (let i = 0; i <= time; i++) {
-            console.log('second: ', second++);
-
-        }
-        second = 0;
-    }
-    minute = 0;
-}
-
+// for (let hour = 0; hour < 24; hour++) {
+//
+//     for (let min = 0; min < 60; min++) {
+//
+//         for (let sec = 0; sec < 60; sec++) {
+//
+//             console.log(${hour}:${min}:${sec});
+//
+//             if (hour === 1 && min ===1 && sec === 23) {
+//                 hour = 24;
+//                 min = 60;
+//                 break;
+//             }
+//         }
+//     }
+// }
 
 
 
