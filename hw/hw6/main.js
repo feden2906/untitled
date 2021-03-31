@@ -126,12 +126,22 @@ for (const user of users) {
     nameDiv.style.color = 'gold';
     document.body.appendChild(nameDiv);
     let addressDiv = document.createElement('div');
-    addressDiv.innerHTML = `City: ${user.address.city} Country: ${user.address.country} Street: ${user.address.street}
-    HouseNumber: ${user.address.houseNumber}`;
     addressDiv.style.backgroundColor = 'gold';
     addressDiv.style.border = '2px solid green';
     addressDiv.style.color = 'green';
     document.body.appendChild(addressDiv);
+    let addressCity = document.createElement('div');
+    let addressCountry = document.createElement('div');
+    let addressStreet = document.createElement('div');
+    let addressHouseNumber = document.createElement('div');
+    addressCity.innerHTML = `City: ${user.address.city}`;
+    addressCountry.innerHTML = `Country: ${user.address.country}`;
+    addressStreet.innerHTML = `Street: ${user.address.street}`;
+    addressHouseNumber.innerHTML = `HouseNumber: ${user.address.houseNumber}`;
+    addressDiv.appendChild(addressCity);
+    addressDiv.appendChild(addressCountry);
+    addressDiv.appendChild(addressStreet);
+    addressDiv.appendChild(addressHouseNumber);
 }
 
 
