@@ -114,17 +114,6 @@ for (const user of users) {
 }
 
 
-
-
-
-
-// for (let i = 0; i < users.length; i++) {
-//     let usersDiv = document.createElement('div');
-//     usersDiv.innerHTML = `${users[i].name}`;
-//     document.body.appendChild(usersDiv);
-// }
-
-
 // 3) За допомоги циклу проітерувати  масив users, записати кожного юзера в сівй блок
 // за допомоги document.createElement. Блок з адресою зробити окремим блоком, з
 // блоками для кожної властивості
