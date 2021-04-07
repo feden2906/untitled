@@ -277,25 +277,25 @@ let car = {
     engineVolume: 7,
     driver: 'New Driver',
 
-    drive() {
+    drive: function () {
         console.log(`їдемо зі швидкістю ${this.maxSpeed} на годину`)
     },
 
-    info() {
+    info: function () {
         console.log(`model: ${this.model} \n manufacturer: ${this.manufacturer} \n yearOfIssue: ${this.yearOfIssue} \n maxSpeed: ${this.maxSpeed} \n engineVolume: ${this.engineVolume} \n driver: ${this.driver}`);
     },
 
-    increaseMaxSpeed(newSpeed) {
+    increaseMaxSpeed: function (newSpeed) {
         this.maxSpeed = newSpeed;
         console.log(`New max speed: ${newSpeed}`);
     },
 
-    changeYear(newValue) {
+    changeYear: function (newValue) {
         this.yearOfIssue = newValue;
         console.log(`New year of Issue: ${newValue}`);
     },
 
-    addDriver(newDriver) {
+    addDriver: function (newDriver) {
         this.driver = newDriver;
     }
 
