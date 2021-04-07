@@ -77,23 +77,32 @@ class NewPC extends MyComputer {
 //     Оперативку можна збільшити лише в 2 рази. Зменшувати її не можна.
 //     Для зміни характеритик мають бути свої методи. Мняти змінну "в лоб" заборонено.
 
-    cpuUpgrade() {
-        this.cpu = this.cpu + (this.cpu * 0.1);    /// а как прописать условие, что уменьшать мощность процессора и
-        console.log(`New cpu: ${this.cpu}`);       /// оперативку - запрещено?
+    cpuUpgrade(percents) {
+        if (percents <= 10) {
+            this.cpu += (this.cpu * percents) / 100;
+            console.log(`Потужність процесора в ${this.name} збільшено на ${percents}% (${this.cpu})`);
+        } else {
+            console.error(`Не можна збільшити потужність процесора в ${this.name} на ${percents}%`);
+        }
     }
 
-    ramUpgrade() {
-        this.ram = this.ram * 2;
-        console.log(`New ram: ${this.ram}`);
+    ramUpgrade(upgrade) {
+        if (upgrade <= 2) {
+            this.ram += this.ram * upgrade;
+            console.log(`New ram: ${this.ram}`);
+        } else {
+            console.error(`ERROR`);
+        }
     }
 }
 
-let newPC = new NewPC(4, 700, 'HP', 'ON');
+let newPC = new NewPC(6, 700, 'HP', 'ON');
 console.log(newPC);
 
 // newPC.startGame('Fallout 4');
-newPC.cpuUpgrade();
-newPC.ramUpgrade();
+newPC.cpuUpgrade(15);
+newPC.ramUpgrade(12);
+
 
 // ===
 // Від базового ПК необхідно зробити ігнорий ПК.
