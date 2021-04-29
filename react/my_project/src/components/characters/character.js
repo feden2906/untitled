@@ -1,14 +1,22 @@
 import './character.css';
 function Character(props) {
 
-    let cls = props.newCharacter === 'mars' ? 'mars-class' : 'saturn-class';
-    return <div className={cls}>
 
-        <h2>
+    return <div>
+
+        <h1>
             {props.newCharacter}
-        </h2>
+        </h1>
 
         <img src={props.image} alt=""/>
+
+        <h3>
+            {props.surface_area}
+        </h3>
+
+        <h4>
+            {props.average_orbital_speed}
+        </h4>
 
 
     </div>

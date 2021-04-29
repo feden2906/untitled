@@ -4,23 +4,31 @@
 }
 
 div {
+    background-color: orange;
     width: 400px;
     margin-bottom: 10px;
+
 }
 
 img {
     width: 100%;
 }
 
-h2 {
+h1 {
     width: 100%;
     text-align: justify;
+    font-size: 50px;
 }
 
-.mars-class {
-    background-color: orange;
+h3 {
+    width: 100%;
+    text-align: justify;
+    color: red;
 }
 
-.saturn-class {
-    background-color: gold;
+h4 {
+    width: 100%;
+    text-align: justify;
+    color: blue;
 }
+
