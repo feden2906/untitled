@@ -19,6 +19,7 @@ function Character(props) {
         </h4>
 
 
+
     </div>
 }
 
