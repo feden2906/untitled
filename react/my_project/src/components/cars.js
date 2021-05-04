@@ -3,7 +3,7 @@ export default function Car ({item, deleteThisCar}) {
         <div>
             <h3>{item.id} - {item.producer} - {item.model}</h3>
             <h3>{item.color} - {item.year}</h3>
-            <button onClick={deleteThisCar}>delete</button>
+            <button onClick={() => deleteThisCar(item.id)}>delete</button>
             <hr/>
         </div>
     )

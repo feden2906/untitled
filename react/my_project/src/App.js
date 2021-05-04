@@ -1,4 +1,3 @@
-
 import './App.css';
 import Car from "./components/cars";
 import {useState} from "react";
@@ -154,15 +153,17 @@ function App() {
 
     let [carDelete, setCarDelete] = useState(cars);
     const deleteCar = (id) => {
-        carDelete = carDelete.filter(car => car.id !== id);
+        carDelete.filter(car => car.id !== id);
         setCarDelete([...carDelete]);
-
-    };
+    }
 
     return (
         <div>
             {
-                cars.map((value,index) =>  <Car key={index} item={value} deleteThisCar={deleteCar}/> )
+                cars.map((value, index) => <Car
+                    key={index}
+                    item={value}
+                    deleteThisCar={deleteCar}/>)
             }
         </div>
     );
