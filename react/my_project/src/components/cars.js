@@ -8,3 +8,4 @@ export default function Car ({item, deleteThisCar}) {
         </div>
     )
 }
+
