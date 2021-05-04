@@ -1,11 +1,10 @@
-export default function Car ({item}) {
+export default function Car ({item, deleteThisCar}) {
     return (
         <div>
-            {item.producer} -
-            {item.model} -
-            {item.color} -
-            {item.year}
-            <button onClick={}>delete</button>
+            <h3>{item.id} - {item.producer} - {item.model}</h3>
+            <h3>{item.color} - {item.year}</h3>
+            <button onClick={deleteThisCar}>delete</button>
+            <hr/>
         </div>
     )
 }

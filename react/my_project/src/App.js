@@ -1,9 +1,11 @@
 
 import './App.css';
 import Car from "./components/cars";
+import {useState} from "react";
 
 const cars = [
     {
+        id: 1,
         producer: "subaru",
         model: "wrx",
         year: 2010,
@@ -14,6 +16,7 @@ const cars = [
         power: 400
     },
     {
+        id: 2,
         producer: "subaru",
         model: "legacy",
         year: 2007,
@@ -24,6 +27,7 @@ const cars = [
         power: 250
     },
     {
+        id: 3,
         producer: "subaru",
         model: "tribeca",
         year: 2011,
@@ -34,6 +38,7 @@ const cars = [
         power: 300
     },
     {
+        id: 4,
         producer: "subaru",
         model: "leone",
         year: 1998,
@@ -44,6 +49,7 @@ const cars = [
         power: 140
     },
     {
+        id: 5,
         producer: "subaru",
         model: "impreza",
         year: 2014,
@@ -54,6 +60,7 @@ const cars = [
         power: 200
     },
     {
+        id: 6,
         producer: "subaru",
         model: "outback",
         year: 2014,
@@ -64,6 +71,7 @@ const cars = [
         power: 165
     },
     {
+        id: 7,
         producer: "bmw",
         model: "115",
         year: 2013,
@@ -74,6 +82,7 @@ const cars = [
         power: 120
     },
     {
+        id: 8,
         producer: "bmw",
         model: "315",
         year: 2010,
@@ -84,6 +93,7 @@ const cars = [
         power: 120
     },
     {
+        id: 9,
         producer: "bmw",
         model: "650",
         year: 2009,
@@ -94,6 +104,7 @@ const cars = [
         power: 350
     },
     {
+        id: 10,
         producer: "bmw",
         model: "320",
         year: 2012,
@@ -104,6 +115,7 @@ const cars = [
         power: 180
     },
     {
+        id: 11,
         producer: "mercedes",
         model: "e200",
         year: 1990,
@@ -114,6 +126,7 @@ const cars = [
         power: 180
     },
     {
+        id: 12,
         producer: "mercedes",
         model: "e63",
         year: 2017,
@@ -124,6 +137,7 @@ const cars = [
         power: 400
     },
     {
+        id: 13,
         producer: "mercedes",
         model: "c250",
         year: 2017,
@@ -137,10 +151,19 @@ const cars = [
 
 
 function App() {
+
+    let [carDelete, setCarDelete] = useState(cars);
+    const deleteCar = (id) => {
+        carDelete = carDelete.filter(car => car.id !== id);
+        setCarDelete([...carDelete]);
+
+    };
+
     return (
         <div>
-            cars.map <Car/>
-
+            {
+                cars.map((value,index) =>  <Car key={index} item={value} deleteThisCar={deleteCar}/> )
+            }
         </div>
     );
 }
