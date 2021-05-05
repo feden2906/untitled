@@ -153,14 +153,14 @@ function App() {
 
     let [carDelete, setCarDelete] = useState(cars);
     const deleteCar = (id) => {
-        carDelete.filter(car => car.id !== id);
-        setCarDelete([...carDelete]);
+        let x = carDelete.filter(car => car.id !== id);
+        setCarDelete(x);
     }
 
     return (
         <div>
             {
-                cars.map((value, index) => <Car
+                carDelete.map((value, index) => <Car
                     key={index}
                     item={value}
                     deleteThisCar={deleteCar}/>)
