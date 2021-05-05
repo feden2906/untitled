@@ -1,5 +1,3 @@
-
-
 export default function Post({item, postInfo}) {
     return (
         <div>

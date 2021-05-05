@@ -31,7 +31,8 @@ export default function Users() {
 
             <div className={'singleUserDetails'}>
                 {
-                    singleUser ? (<h2>{singleUser.id} {singleUser.name} {singleUser.email}</h2>) : (<div></div>)
+                    singleUser ? (<h2>{singleUser.id} <br/> {singleUser.name} <br/> {singleUser.email}</h2>) : (
+                        <div></div>)
                 }
             </div>
         </div>

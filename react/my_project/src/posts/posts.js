@@ -31,7 +31,8 @@ export default function Posts() {
 
             <div className={'singlePostDetails'}>
                 {
-                    singlePost ? (<h2>{singlePost.id} {singlePost.title}</h2>) : (<div></div>)
+                    singlePost ? (<h2>{singlePost.id} <br/> {singlePost.title} <br/> {singlePost.body}</h2>) : (
+                        <div></div>)
                 }
             </div>
         </div>

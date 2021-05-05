@@ -1,4 +1,3 @@
-
 export default function User({item, userInfo}) {
     return (
         <div>
