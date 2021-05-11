@@ -6,6 +6,8 @@ import {
     Route,
     Link
 } from "react-router-dom";
+import User_details from "./user_details/User_details";
+import Posts from "./posts/Posts";
 
 
 function App() {
@@ -20,8 +22,14 @@ function App() {
                         console.log(props);
                         return <Users {...props}/>;
                     }}/>
-                    <Route path={'/posts'} render={() => <h1>posts</h1>}/>
-                    <Route exact={true} path={'/users/:id'} render={() => <div>XXX</div>}/>
+                    <Route exact={true} path={'/users/:id'} render={(props) => {
+                        let {match: {params: {id}}} = props;
+                        return <User_details userID={id}/>
+                    }}/>
+
+                    <Route exact={true} path={'/posts'} render={({match: {url}}) => <Posts url={url}/>}/>
+
+
                 </Switch>
 
             </div>
