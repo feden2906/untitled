@@ -1,38 +1,21 @@
 import {useEffect, useState} from "react";
 import User from "../user/user";
-import './usersStyle.css'
+import {getUsers} from '../services/api'
 
 
-export default function Users() {
+export default function Users({match: {url}}) {
     let [users, setUsers] = useState([]);
-    let [singleUser, setSingleUser] = useState({});
 
     useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/users')
-            .then(value => value.json())
-            .then(value => {
-                setUsers([...value])
-            })
+        getUsers().then(value => setUsers([...value.data]))
     }, []);
 
-    const userInfo = (id) => {
-        let findDataUser = users.find(value => value.id === id);
-        setSingleUser(findDataUser);
-
-    }
 
     return (
-        <div className={'wrap'}>
-            <div className={'allUsers'}>
+        <div>
+            <div>
                 {
-                    users.map(value => <User key={value.id} item={value} userInfo={userInfo}/>)
-                }
-            </div>
-
-            <div className={'singleUserDetails'}>
-                {
-                    singleUser ? (<h2>{singleUser.id} <br/> {singleUser.name} <br/> {singleUser.email}</h2>) : (
-                        <div></div>)
+                    users.map(value => <User key={value.id} item={value} url={url}/>)
                 }
             </div>
         </div>

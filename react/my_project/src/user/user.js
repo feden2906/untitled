@@ -1,12 +1,16 @@
-export default function User({item, userInfo}) {
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
+
+export default function User({item, url}) {
     return (
         <div>
             <div>
-                <h3>Id: {item.id}</h3>
-                <h4>Name: {item.name}</h4>
-                <h4>Email: {item.email}</h4>
-                <hr/>
-                <button onClick={() => userInfo(item.id)}>details</button>
+                {item.id} {item.name} -
+                <Link to={url + '/' + item.id}>user {item.id} details</Link>
                 <hr/>
             </div>
         </div>
