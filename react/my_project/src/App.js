@@ -8,7 +8,8 @@ import {
 } from "react-router-dom";
 import User_details from "./user_details/User_details";
 import Posts from "./posts/Posts";
-
+import Comments from "./comments/Comments";
+import Comment_details from "./comment_details/Comment_details";
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
             <div>
                 <div><Link to={'/users'}>to users</Link></div>
                 <div><Link to={'/posts'}>to posts</Link></div>
+                <div><Link to={'/comments'}>to comments</Link></div>
 
                 <Switch>
                     <Route exact={true} path={'/users'} render={(props) => {
@@ -28,6 +30,15 @@ function App() {
                     }}/>
 
                     <Route exact={true} path={'/posts'} render={({match: {url}}) => <Posts url={url}/>}/>
+
+                    <Route exact={true} path={'/comments'} render={(props) => {
+                        return <Comments {...props}/>;
+                    }}/>
+
+                    <Route exact={true} path={'/comments/:id'} render={(props) => {
+                        let {match: {params: {id}}} = props;
+                        return <Comment_details commentID={id}/>
+                    }}/>
 
 
                 </Switch>

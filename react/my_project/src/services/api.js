@@ -12,4 +12,8 @@ const getPosts = () => {
     return axiosInstance.get('/posts');
 }
 
-export {getUsers, getPosts}
+const getComments = () => {
+    return axiosInstance.get('/comments');
+}
+
+export {getUsers, getPosts, getComments}
