@@ -1,14 +1,14 @@
 import {useEffect, useState} from "react";
-import {getCharacter} from "../services/api";
+import {getOneCharacter} from "../services/api";
 
 
 export default function CharacterDetails(props) {
-    let {match: {params: {id}}} = props;
-    let [characterWithDetails, setCharacterWithDetails] = useState(null);
+    const {match: {params: {id}}} = props;
+    const [characterWithDetails, setCharacterWithDetails] = useState(null);
 
     useEffect(() => {
-        getCharacter().then(value => setCharacterWithDetails([...value.data]))
-    }, [id])
+        getOneCharacter(id).then(value => setCharacterWithDetails(value.data))
+    }, [])
 
 
     return (

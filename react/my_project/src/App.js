@@ -8,6 +8,7 @@ import Characters from "./components/characters/Characters";
 import React from "react";
 import Inventorys from "./components/inventorys/Inventorys";
 import CharacterDetails from "./components/characterDetails/CharacterDetails";
+import InventoryDetails from "./components/inventoryDetails/InventoryDetails";
 
 export default function App() {
     return (
@@ -24,6 +25,8 @@ export default function App() {
                     <Route exact={true} path={'/inventory'} render={(props) => {
                         return <Inventorys {...props}/>
                     }}/>
+
+                    <Route exact path={'/inventory/:id'} component={InventoryDetails}/>
 
 
                 </Switch>
