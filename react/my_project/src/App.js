@@ -4,27 +4,28 @@ import {
     Route,
     Link
 } from "react-router-dom";
-import Characters from "./components/characters/Characters";
-import React from "react";
-import Inventorys from "./components/inventorys/Inventorys";
-import CharacterDetails from "./components/characterDetails/CharacterDetails";
+import Posts from "./components/posts/Posts";
+import Users from "./components/users/Users";
+import UserDetails from "./components/userDetails/UserDetails";
+
 
 export default function App() {
     return (
         <Router>
             <div>
-                <div><Link to={'/cast'}>to characters</Link></div>
-                <div><Link to={'/inventory'}>to inventory</Link></div>
+                <div><Link to={'/users'}>to users</Link></div>
+                <div><Link to={'/posts'}>to posts</Link></div>
+
                 <Switch>
-                    <Route exact path={'/cast'} render={(props) => {
-                        return <Characters {...props}/>
-                    }}/>
-                    <Route exact path={'/cast/:id'} component={CharacterDetails}/>
-
-                    <Route exact={true} path={'/inventory'} render={(props) => {
-                        return <Inventorys {...props}/>
+                    <Route exact path={'/users'} render={(props) => {
+                        return <Users {...props}/>
                     }}/>
 
+                    <Route path={'/users/:id'} component={UserDetails}/>
+
+                    <Route exact path={'/posts'} render={(props) => {
+                        return <Posts {...props}/>
+                    }}/>
 
                 </Switch>
 
