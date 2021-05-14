@@ -16,7 +16,7 @@ export default function App() {
                 <div><Link to={'/cast'}>to characters</Link></div>
                 <div><Link to={'/inventory'}>to inventory</Link></div>
                 <Switch>
-                    <Route exact={true} path={'/cast'} render={(props) => {
+                    <Route exact path={'/cast'} render={(props) => {
                         return <Characters {...props}/>
                     }}/>
                     <Route exact path={'/cast/:id'} component={CharacterDetails}/>
