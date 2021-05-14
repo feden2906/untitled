@@ -7,6 +7,7 @@ import {
 import Characters from "./components/characters/Characters";
 import React from "react";
 import Inventorys from "./components/inventorys/Inventorys";
+import CharacterDetails from "./components/characterDetails/CharacterDetails";
 
 export default function App() {
     return (
@@ -18,6 +19,7 @@ export default function App() {
                     <Route exact={true} path={'/cast'} render={(props) => {
                         return <Characters {...props}/>
                     }}/>
+                    <Route exact path={'/cast/:id'} component={CharacterDetails}/>
 
                     <Route exact={true} path={'/inventory'} render={(props) => {
                         return <Inventorys {...props}/>

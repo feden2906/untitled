@@ -9,7 +9,7 @@ export default function Character({item, url}) {
     return (
         <div>
             {item.name} - {item.born} -
-            <Link to={url + '/' +item.id}>details about {item.id}</Link>
+            <Link to={url + '/' + item.id}>details about {item.id}</Link>
 
         </div>
     );

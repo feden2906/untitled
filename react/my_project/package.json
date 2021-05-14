@@ -14,7 +14,8 @@
     "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
-    "@types/axios": "^0.14.0"
+    "@types/axios": "^0.14.0",
+    "@types/react-router-dom": "^5.1.7"
   },
   "scripts": {
     "start": "react-scripts start",
