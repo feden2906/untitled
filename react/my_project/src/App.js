@@ -2,7 +2,6 @@ import {BrowserRouter as Router, Link, Route, Switch} from "react-router-dom";
 import Users from "./components/users/Users";
 import UserWithPost from "./components/userWithPost/UserWithPost";
 
-
 export default function App() {
     return (
         <Router>
