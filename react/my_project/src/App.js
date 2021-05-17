@@ -1,12 +1,6 @@
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
-import Posts from "./components/posts/Posts";
+import {BrowserRouter as Router, Link, Route, Switch} from "react-router-dom";
 import Users from "./components/users/Users";
-import UserDetails from "./components/userDetails/UserDetails";
+import UserWithPost from "./components/userWithPost/UserWithPost";
 
 
 export default function App() {
@@ -14,22 +8,16 @@ export default function App() {
         <Router>
             <div>
                 <div><Link to={'/users'}>to users</Link></div>
-                <div><Link to={'/posts'}>to posts</Link></div>
 
                 <Switch>
                     <Route exact path={'/users'} render={(props) => {
                         return <Users {...props}/>
                     }}/>
 
-                    <Route path={'/users/:id'} component={UserDetails}/>
-
-                    <Route exact path={'/posts'} render={(props) => {
-                        return <Posts {...props}/>
+                    <Route path={'/users/:id'} render={(props) => {
+                        return <UserWithPost {...props}/>
                     }}/>
-
                 </Switch>
-
-
             </div>
         </Router>
     );

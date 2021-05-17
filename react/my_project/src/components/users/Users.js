@@ -1,7 +1,5 @@
 import {useEffect, useState} from "react";
 import User from "../user/User";
-import UserDetails from "../userDetails/UserDetails";
-import {Route} from "react-router-dom";
 
 export default function Users({match: {url}}) {
 
@@ -13,7 +11,7 @@ export default function Users({match: {url}}) {
             .then(value => {
                 setUsers([...value])
             })
-    },[])
+    }, [])
 
     return (
         <div>
