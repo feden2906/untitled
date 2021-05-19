@@ -15,7 +15,7 @@ const reducer = (state = initialState, action) => {
         case "ADD_TO_LIST": {
             return {
                 ...state,
-                Todo: state.Todo.push(action.payload)
+                Todo: state.Todo.push(state.action.payload)
             }
         }
         case "MARKET_COMPLETED": {
