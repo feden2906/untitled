@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {createStore} from "redux";
 import {Provider} from "react-redux";
+import {logDOM} from "@testing-library/react";
 
 const initialState = {
     todos: []
@@ -15,19 +16,19 @@ const reducer = (state = initialState, action) => {
         case "ADD_TO_LIST": {
             return {
                 ...state,
-                todos: action.payload
+                todos: [...state.todos, action.payload]
             }
         }
         case "MARKET_COMPLETED": {
             return {
                 ...state,
-                todos: state.todos
+                todos: action.payload === true
             }
         }
         case "REMOVE": {
             return {
                 ...state,
-                todos: state.todos
+                todos: action.payload === false
             }
         }
         default:

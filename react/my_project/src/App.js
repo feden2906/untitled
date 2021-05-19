@@ -2,15 +2,15 @@ import {useSelector, useDispatch} from "react-redux";
 import {useState} from "react";
 
 
-const Todo = () => {
-    const todo = useSelector((state) => state.todo)
+const Todos = () => {
+    const todos = useSelector((state) => state.todos)
     const dispatch = useDispatch();
     const [value, setValue] = useState('')
     const [check, setCheck] = useState(null)
     return (
         <div>
             <div>
-                <h1>Result: {todo}</h1>
+                <h1>Result: {todos}</h1>
                 <input type="text" name={'input'} value={value} placeholder={'Add something...'}
                        onChange={({target: {value}}) => setValue(value)}/>
                 <div>
@@ -37,7 +37,7 @@ const Todo = () => {
 export default function App() {
     return (
         <div>
-            <Todo/>
+            <Todos/>
         </div>
     );
 }
