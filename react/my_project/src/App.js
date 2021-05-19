@@ -10,7 +10,7 @@ const Todo = () => {
     return (
         <div>
             <div>
-                <h1>Todo List: {todo}</h1>
+                <h1>Todo: {todo}</h1>
                 <input type="text" name={'input'} value={value} placeholder={'Add something...'}
                        onChange={({target: {value}}) => setValue(value)}/>
                 <div>
