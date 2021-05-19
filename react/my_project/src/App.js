@@ -17,7 +17,7 @@ const Todo = () => {
                     <h4>Market completed?</h4>
                     <hr/>
                     YES <input type="radio" name={'checkStatus'} value={true}
-                               onChange={({target: {value}}) => setCheck(value)}/>
+                               onChange={({target: {value}}, ) => setCheck(value)}/>
                     <hr/>
                     NO <input type="radio" name={'checkStatus'} value={false}
                               onChange={({target: {value}}) => setCheck(value)}/>

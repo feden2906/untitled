@@ -7,7 +7,7 @@ import {createStore} from "redux";
 import {Provider} from "react-redux";
 
 const initialState = {
-    Todo: []
+    todos: []
 }
 
 const reducer = (state = initialState, action) => {
@@ -15,19 +15,19 @@ const reducer = (state = initialState, action) => {
         case "ADD_TO_LIST": {
             return {
                 ...state,
-                Todo: state.Todo.push(action.payload)
+                todos: action.payload
             }
         }
         case "MARKET_COMPLETED": {
             return {
                 ...state,
-                Todo: state.Todo /// ???
+                todos: state.todos
             }
         }
         case "REMOVE": {
             return {
                 ...state,
-                Todo: state.Todo  /// ???
+                todos: state.todos
             }
         }
         default:
