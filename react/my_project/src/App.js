@@ -1,43 +1,9 @@
-import {useSelector, useDispatch} from "react-redux";
-import {useState} from "react";
 
-
-const Todos = () => {
-    const todos = useSelector((state) => state.todos)
-    const dispatch = useDispatch();
-    const [value, setValue] = useState('')
-    const [check, setCheck] = useState(null)
-    return (
-        <div>
-            <div>
-                <h1>Result: {todos}</h1>
-                <input type="text" name={'input'} value={value} placeholder={'Add something...'}
-                       onChange={({target: {value}}) => setValue(value)}/>
-                <div>
-                    <h4>Market completed?</h4>
-                    <hr/>
-                    YES <input type="radio" name={'checkStatus'} value={true}
-                               onChange={({target: {value}}, ) => setCheck(value)}/>
-                    <hr/>
-                    NO <input type="radio" name={'checkStatus'} value={false}
-                              onChange={({target: {value}}) => setCheck(value)}/>
-                    <hr/>
-                </div>
-                <div>
-                    <button onClick={() => {
-                        dispatch({type: "ADD_TO_LIST", payload: {input: value, checkStatus: check}})
-                    }}>ADD
-                    </button>
-                </div>
-            </div>
-        </div>
-    )
-}
 
 export default function App() {
     return (
         <div>
-            <Todos/>
+            App
         </div>
     );
 }

@@ -3,41 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {createStore} from "redux";
 import {Provider} from "react-redux";
-import {logDOM} from "@testing-library/react";
-
-const initialState = {
-    todos: []
-}
-
-const reducer = (state = initialState, action) => {
-    switch (action.type) {
-        case "ADD_TO_LIST": {
-            return {
-                ...state,
-                todos: [...state.todos, action.payload]
-            }
-        }
-        case "MARKET_COMPLETED": {
-            return {
-                ...state,
-                todos: action.payload === true
-            }
-        }
-        case "REMOVE": {
-            return {
-                ...state,
-                todos: action.payload === false
-            }
-        }
-        default:
-            return state
-    }
-}
-
-const store = createStore(reducer);
-
+import {store} from "./redux";
 
 ReactDOM.render(
     <React.StrictMode>
