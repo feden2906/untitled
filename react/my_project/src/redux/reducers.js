@@ -13,7 +13,7 @@ export const reducer = (state = initialState, action) => {
         case 'SET_POSTS': {
             return {
                 ...state,
-                // posts ?
+                posts: action.payload
             }
         }
         case 'SET_IS_LOADING': {
