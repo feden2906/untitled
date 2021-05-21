@@ -1,5 +1,5 @@
 import {useDispatch} from "react-redux";
-import {setError, setIsLoading, setPosts} from "./";
+import {setPostsError, setPostsIsLoading, setPosts} from "./";
 
 export const usePostsFetcher = () => {
     const dispatch = useDispatch();
@@ -11,13 +11,13 @@ export const usePostsFetcher = () => {
 export const usePostsSetLoading = () => {
     const dispatch = useDispatch();
     return (payload) => {
-        dispatch(setIsLoading())
+        dispatch(setPostsIsLoading())
     }
 }
 
 export const usePostsSetError = () => {
     const dispatch = useDispatch();
     return (payload) => {
-        dispatch(setError(payload));
+        dispatch(setPostsError(payload));
     }
 }

@@ -1,15 +1,66 @@
 import React from "react";
-import {useSelector} from "react-redux";
-import {usePostsFetcher, usePostsSetLoading, usePostsSetError} from './redux'
+import {useDispatch, useSelector} from "react-redux";
+import {
+    setComments,
+    setCommentsError,
+    setCommentsIsLoading,
+    usePostsFetcher,
+    usePostsSetError,
+    usePostsSetLoading
+} from './redux'
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
 
+const Comments = () => {
+    const {isLoading, comments, error} = useSelector(({comments}) => {
+        return comments
+    });
+    const dispatch = useDispatch();
+    const fetchComments = async () => {
+        try {
+            dispatch(setCommentsIsLoading)
+            const response = await fetch('https://jsonplaceholder.typicode.com/comments');
+            const payload = await response.json();
+            dispatch(setComments(payload))
+        } catch (e) {
+            dispatch(setCommentsError('???'))
+        }
+    }
+    React.useEffect(() => {
+        fetchComments();
+    }, [])
+
+    if (error) {
+        return (
+            <h1>{error}</h1>
+        )
+    }
+    if (isLoading) {
+        return (
+            <h1>Loading!!!</h1>
+        )
+    }
+
+    return (
+        <div>
+            {comments.map(comment => (
+                <p key={comment.id}>
+                    {comment.name} = {comment.email} = {comment.body}
+                </p>
+            ))}
+        </div>
+    );
+}
 
 
 const Posts = () => {
-    const {isLoading, posts, error} = useSelector(({isLoading, posts, error}) => ({
-        isLoading,
-        posts,
-        error
-    }));
+    const {isLoading, posts, error} = useSelector(({posts}) => {
+        return posts
+    });
 
     const postFetcher = usePostsFetcher();
     const postLoading = usePostsSetLoading();
@@ -56,7 +107,14 @@ const Posts = () => {
 export default function App() {
     return (
         <div>
-            <Posts/>
+            <Router>
+                <div><Link to={'/posts'}>to posts</Link></div>
+                <div><Link to={'/comments'}>to comments</Link></div>
+                <Switch>
+                    <Route path={'/posts'}><Posts/></Route>
+                    <Route path={'/comments'}><Comments/></Route>
+                </Switch>
+            </Router>
         </div>
     );
 }

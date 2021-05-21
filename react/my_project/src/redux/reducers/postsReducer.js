@@ -1,9 +1,9 @@
 import {
     SET_POSTS,
-    SET_IS_LOADING,
-    RESET_IS_LOADING,
-    SET_ERROR
-} from './actionTypes'
+    SET_POSTS_IS_LOADING,
+    RESET_POSTS_IS_LOADING,
+    SET_POSTS_ERROR
+} from '../actionTypes'
 
 const initialState = {
     posts: [],
@@ -16,7 +16,7 @@ const initialState = {
 // set_is_loading    менять с false на true
 // reset_is_loading  менять с true на false
 
-export const reducer = (state = initialState, action) => {
+export const postsReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_POSTS: {
             return {
@@ -25,19 +25,19 @@ export const reducer = (state = initialState, action) => {
                 isLoading: false
             }
         }
-        case SET_IS_LOADING: {
+        case SET_POSTS_IS_LOADING: {
             return {
                 ...state,
                 isLoading: true
             }
         }
-        case RESET_IS_LOADING: {
+        case RESET_POSTS_IS_LOADING: {
             return {
                 ...state,
                 isLoading: false
             }
         }
-        case SET_ERROR: {
+        case SET_POSTS_ERROR: {
             return {
                 ...state,
                 error: action.payload,
