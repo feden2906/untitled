@@ -25,7 +25,7 @@ const Todos = () => {
                 </div>
                 <div>
                     <button onClick={() => {
-                        dispatch({type: "ADD_TO_LIST", payload: {input: value, checkStatus: check}})
+                        dispatch({type: 'ADD_TO_LIST', payload: {input: value, checkStatus: check}})
                     }}>ADD
                     </button>
                 </div>
