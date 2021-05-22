@@ -1,7 +1,7 @@
 import {useSelector, useDispatch} from "react-redux";
 
 const Counter = () => {
-    const counter = useSelector((state) => state.counter);
+    const { counter } = useSelector((state) => state);
     const dispatch = useDispatch();
     return (
         <>
@@ -34,11 +34,4 @@ const Counter = () => {
     )
 }
 
-
-export default function Component() {
-    return (
-        <div>
-            <Counter/>
-        </div>
-    );
-}
+export default Counter;

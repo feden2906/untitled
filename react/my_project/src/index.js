@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {createStore} from "redux";
 import {Provider} from "react-redux";
+import {BrowserRouter as Router} from "react-router-dom";
 
 const initialState = {
     counter: 0
@@ -53,7 +54,9 @@ const store = createStore(reducer)
 ReactDOM.render(
     <React.StrictMode>
         <Provider store={store}>
-            <App/>
+            <Router>              {/* Гарною практикою є огортання всієї апки в Router */}
+                <App/>
+            </Router>
         </Provider>
     </React.StrictMode>,
     document.getElementById('root')

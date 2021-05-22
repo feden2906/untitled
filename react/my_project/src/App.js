@@ -1,15 +1,11 @@
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import Component from "./Component";
+import {Route} from "react-router-dom";
+import Counter from "./Component";
 
 
 export default function App() {
     return (
         <div>
-            <Router>
-                <Switch>
-                    <Route path={'/'}><Component/></Route>
-                </Switch>
-            </Router>
+           <Route path={'/'}><Counter/></Route>    {/* якщо один Route то в Switch можна не огортаати */}
         </div>
     );
 }
