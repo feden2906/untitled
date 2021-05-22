@@ -22,7 +22,7 @@ const Comments = () => {
     const dispatch = useDispatch();
     const fetchComments = async () => {
         try {
-            dispatch(setCommentsIsLoading)
+            dispatch(setCommentsIsLoading())
             const response = await fetch('https://jsonplaceholder.typicode.com/comments');
             const payload = await response.json();
             dispatch(setComments(payload))
