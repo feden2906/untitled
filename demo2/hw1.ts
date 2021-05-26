@@ -40,6 +40,7 @@ class Dept {
 }
 
 let dept1 = new Dept(EDept.DEP2, 61, EGendersDept.FEMALE, 43, 1100);
+console.log(dept1);
 
 // 2) Партія
 // - назва
