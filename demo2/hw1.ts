@@ -1,3 +1,8 @@
+
+import {IDept} from "./interface/interface";
+import {IFraction} from "./interface/fraction";
+import {IRada} from "./interface/rada";
+
 // Створити такі класи:
 //   1) Депутат
 // - імя
@@ -7,110 +12,159 @@
 // - мінімальна сума хабаря
 //////
 
-enum EDept {
-    DEP1 = 'dep1',
-    DEP2 = 'dep2',
-    DEP3 = 'dep3',
-    DEP4 = 'dep4',
-    DEP5 = 'dep5',
-    DEP6 = 'dep6',
-    DEP7 = 'dep7',
-    DEP8 = 'dep8'
-}
-
-enum EGendersDept {
-    MALE = 'male',
-    FEMALE = 'female'
-}
-
 class Dept {
-    public name: EDept;
-    protected age: number;
-    private gender: EGendersDept;
+    public name: string;
+    public age: number;
+    public gender: string;
     public honestyLevel: number;
     public minimumMoney?: number;
 
-    constructor(name: EDept, age: number, gender: EGendersDept, honestyLevel: number, minimumMoney?: number) {
+    constructor(name: string, age: number, gender: string, honestyLevel: number, minimumMoney?: number) {
         this.name = name;
         this.age = age;
         this.gender = gender;
         this.honestyLevel = honestyLevel;
         this.minimumMoney = minimumMoney;
     }
+
+    //функція взяти забар// Якщо сума взяти менша за мінімальку, тоді хабарь дати не можливо
+// Сума при якій депутат перестає вагатись рівна "мінімальна сума * % чесності".
+//   Тобто, якщо депутат чесний на 10% і сума взяти рівна 1000, а видаєте 1200, то депатут перестає вагатись,
+//   та бере хабар.
+//   Але якщо при таких самих усовах хабар складає 1050, то він буде вагатись.
+// - спробувати дати взятку. Чим чесніший депутат тим склідніше дати йому хабаря.
+//   Дача хабаря має мати 3 стани
+// - не успішна
+// - успішна
+// - вгається
+// !!! Хабарником рахується людина, в якої рівень чесності нижчий за 50 !!!
+
+    public giveMoney = (money: number): void => {
+        if (this.honestyLevel > 50 || money < this.minimumMoney) {
+            console.log(`${this.name} don't take money`);
+            return
+        }
+        if (money < this.minimumMoney + this.minimumMoney * this.honestyLevel / 100) {
+            console.log(`${this.name} thinking take money or not`);
+            return;
+        }
+        console.log(`${this.name} take the ${money} money`)
+        return;
+    }
 }
 
-let dept1 = new Dept(EDept.DEP2, 61, EGendersDept.FEMALE, 43, 1100);
-console.log(dept1);
+const deputat1: IDept = new Dept('kravchuk', 57, 'male', 72, 100000);
+const deputat2: IDept = new Dept('medvedchuk', 53, 'male', 20, 99000);
+const deputat3: IDept = new Dept('tymoshenko', 48, 'female', 34, 15000);
+const deputat4: IDept = new Dept('razumkov', 40, 'male', 51);
+const deputat5: IDept = new Dept('lyashko', 54, 'male', 40, 20000);
+
+deputat1.giveMoney(6500);
+deputat2.giveMoney(150000);
+deputat3.giveMoney(12500);
+deputat4.giveMoney(99);
+deputat5.giveMoney(24000);
 
 // 2) Партія
 // - назва
 // - голова (Депутат)
 // - члени партії (Масив депатутатів)
 
-enum EFraction {
-    FRACTION1 = 'fraction1',
-    FRACTION2 = 'fraction2',
-    FRACTION3 = 'fraction3',
-    FRACTION4 = 'fraction4',
-    FRACTION5 = 'fraction5',
-}
-
 class Fraction {
-    public name: EFraction;
-    private leader: EDept;
-    protected members: Array<EDept>;
+    public name: string;
+    public leader: IDept;
+    public members: Array<IDept>;
 
-    constructor(name: EFraction, leader: EDept, members: Array<EDept>) {
+    constructor(name: string, leader: IDept, members: Array<IDept>) {
         this.name = name;
         this.leader = leader;
         this.members = members;
     }
+
+    // - додати\видалити депутата з фракції
+
+    public addDept = (dept: IDept): void => {
+        this.members.push(dept);
+    }
+
+    public deleteDept = (dept: string): void => {
+        this.members.filter(({name}) => name !== dept)
+    }
+
+    // - вивести конкретну фракцію
+    public membersOfFraction = (): void => {
+        console.log(`Fraction: ${this.name}`);
+        this.members.map(({name, age}) => console.log(`Name: ${name} - Age: ${age}`))
+    }
+
+    // - вивести всіх хабарників фракції
+    public MoneyMakers = (): void => {
+        console.log(`MoneyMakers from ${this.name} : `);
+        this.members
+            .filter(({honestyLevel}) => honestyLevel < 50)
+            .forEach(({name, honestyLevel}) => console.log(`${name} - ${honestyLevel}`));
+    }
+
+    // - вивести найбільшого хабарника у фрації
+    public TheBigMoneyMakers = (): void => {
+        const TheBigMoneyMakers: IDept = this.members.sort((a, b) => a.honestyLevel - b.honestyLevel)[0];
+        console.log(`TheBigMoneyMakers in fraction: ${this.name} : ${TheBigMoneyMakers.name}`);
+    }
+
 }
 
-let fraction1 = new Fraction(EFraction.FRACTION3, EDept.DEP1, [EDept.DEP3, EDept.DEP5])
+const fraction1: IFraction = new Fraction('fraction1', deputat2, [deputat3, deputat2]);
+const fraction2: IFraction = new Fraction('fraction2', deputat1, [deputat1, deputat5]);
+const fraction3: IFraction = new Fraction('fraction3', deputat4, [deputat4, deputat2]);
 
 
 // 3) Верхрвна рада
 // - масив партій
 // - решті полів на вибір
 
-enum EChambers {
-    ONE = 'one',
-    TWO = 'two',
-}
-
 class Rada {
-    protected numberOfChambers: EChambers;
-    protected fractions: Array<EFraction>;
+    public numberOfChambers: number;
+    public fractions: Array<IFraction>;
 
-    constructor(numberOfChambers: EChambers, fractions: Array<EFraction>) {
+    constructor(numberOfChambers: number, fractions: Array<IFraction>) {
         this.numberOfChambers = numberOfChambers;
         this.fractions = fractions;
     }
+
+    //   - додати\видалити фракцію
+    public addFraction = (fraction: IFraction): void => {
+        this.fractions.push(fraction);
+    }
+
+    public deleteFraction = (fractionName: string): void => {
+        this.fractions = this.fractions.filter(({name}) => name !== fractionName);
+    }
+
+    // - вивести всі фракції
+    public showAllFractions = (): void => {
+        console.log('All Fraction of Rada: ')
+        this.fractions.forEach(({name, leader}) => {
+            console.log(`Fraction ${name}. The Leader: ${leader.name}`);
+        });
+    }
+
+    public showOneFraction = (FractionName: string): void => {
+        const fraction: IFraction = this.fractions.filter(({name}) => name === FractionName)[0];
+        console.log(fraction.name, fraction.leader, fraction.members)
+    }
+
+    // - вивести найбільшого хабарника верховної ради
+    public showTheBigMoneyMakerInRada = (): void => {
+        const showTheBigMoneyMakerInRada: IDept = this.fractions
+            .map((fraction) => fraction.members.sort((a, b) => a.honestyLevel - b.honestyLevel)[0])
+            .sort((a, b) => a.honestyLevel - b.honestyLevel)[0];
+
+        console.log(`The Big Money Maker in Ukraine: ${showTheBigMoneyMakerInRada.name}`);
+    }
 }
 
-let rada = new Rada(EChambers.TWO, [EFraction.FRACTION2, EFraction.FRACTION4, EFraction.FRACTION5]);
 
 
-// Мають бути присутні такі можливості:
-//   - додати\видалити фракцію
-// - вивести всі фракції
-// - вивести конкретну фракцію
-// - додати\видалити депутата з фракції
-// - вивести всіх хабарників фракції
-// - вивести найбільшого хабарника у фрації
-// - вивести найбільшого хабарника верховної ради
-// - вивести фсіх депутатів фракції
-// - спробувати дати взятку. Чим чесніший депутат тим склідніше дати йому хабаря.
-//   Дача хабаря має мати 3 стани
-// - не успішна
-// - успішна
-// - вгається
-//
-// Якщо сума взяти менша за мінімальку, тоді хабарь дати не можливо
-// Сума при якій депутат перестає вагатись рівна "мінімальна сума * % чесності".
-//   Тобто, якщо депутат чесний на 10% і сума взяти рівна 1000, а видаєте 1200, то депатут перестає вагатись,
-//   та бере хабар.
-//   Але якщо при таких самих усовах хабар складає 1050, то він буде вагатись.
-//
-// !!! Хабарником рахується людина, в якої рівень чесності нижчий за 50 !!!
+
+
+
